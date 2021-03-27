@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         colors="true"
+         processIsolation="true"
+         stopOnFailure="true"
+         backupGlobals="false"
+         cacheResult="true"
+         cacheDirectory="var/cache/.phpunit.cache"
+         cacheResultFile="var/cache/.phpunit.cache/.phpunit.result.cache"
+         bootstrap="vendor/autoload.php"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd">
+  <coverage>
+    <report>
+      <clover outputFile="var/cache/coverage/xml/clover.xml"/>
+      <html outputDirectory="var/cache/coverage/html"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="http-doctrine-dbal-filter">
+      <directory>tests</directory>
+    </testsuite>
+  </testsuites>
+  <logging/>
+  <source>
+    <include>
+      <directory suffix=".php">src/</directory>
+    </include>
+    <exclude>
+      <file>tests/bootstrap.php</file>
+    </exclude>
+  </source>
+</phpunit>

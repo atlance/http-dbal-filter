@@ -1,0 +1,48 @@
+name: PHP analyze & tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install redis
+      run: sudo apt install -y redis-server redis-tools
+
+    - name: Verify that redis is up
+      run: redis-cli ping
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Normalize composer.json
+      run: composer normalize
+
+    - name: Run static analyze - phpstan, psalm.
+      run: composer php-analyze
+
+    - name: Run PHPUnit Tests
+      run: composer test

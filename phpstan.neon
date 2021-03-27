@@ -1,0 +1,18 @@
+parameters:
+    level: max
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    tmpDir: var/cache/phpstan
+    fileExtensions:
+        - php
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - tests/Model/*
+        - vendor
+        - tests/bootstrap.php
+    bootstrapFiles:
+        - tests/bootstrap.php
+    strictRules:
+        noVariableVariables: false
