@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<psalm
+    totallyTyped="true"
+    resolveFromConfigFile="true"
+    cacheDirectory="var/cache"
+    allowPhpStormGenerics="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+    <fileExtensions>
+        <extension name=".php" />
+    </fileExtensions>
+    <projectFiles>
+        <directory name="src" />
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+
+        <InvalidDocblock errorLevel="info" />
+        <NonInvariantDocblockPropertyType errorLevel="info" />
+
+        <PropertyNotSetInConstructor>
+            <errorLevel type="info">
+            </errorLevel>
+        </PropertyNotSetInConstructor>
+
+        <MixedReturnTypeCoercion>
+            <errorLevel type="info">
+            </errorLevel>
+        </MixedReturnTypeCoercion>
+
+        <MixedAssignment>
+            <errorLevel type="info">
+            </errorLevel>
+        </MixedAssignment>
+
+        <TooManyArguments>
+            <errorLevel type="info">
+            </errorLevel>
+        </TooManyArguments>
+
+        <MixedArgumentTypeCoercion>
+            <errorLevel type="info">
+            <!--<referencedFunction name="ReferencedClass::referencedMethod"/>-->
+            </errorLevel>
+        </MixedArgumentTypeCoercion>
+
+        <MissingConstructor errorLevel="info" />
+
+        <DocblockTypeContradiction errorLevel="info" />
+        <RedundantConditionGivenDocblockType errorLevel="info" />
+
+        <RawObjectIteration errorLevel="info" />
+    </issueHandlers>
+    <plugins>
+    </plugins>
+</psalm>
